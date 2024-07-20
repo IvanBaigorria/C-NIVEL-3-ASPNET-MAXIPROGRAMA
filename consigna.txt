@@ -1,0 +1,54 @@
+Consigna TP Integrador
+Tomando como punto de partida la aplicación creada para el trabajo final del Curso C# Nivel 2 (tranqui, sino lo hiciste luego aclaro), desarrollar una aplicación web destinada a un comercio o emprendimiento que quiera mostrar su catálogo de productos de cara a los potenciales clientes. La idea es contar con un portal al que se pueda acceder y navegar los productos ofrecidos, contando con distintos tipos de visualización como tarjetas, o listados, pantallas de detalles del producto, con un diseño ameno y pensado en la experiencia de usuario. Además el portal puede contar con filtros por descripción, marca, categoría, para mejorar la navegación dentro del sitio.
+
+El portal debe contar con un login que permita acceder a un área de administración de productos. Esto permitirá que quien administre la aplicación pueda realizar modificaciones en los productos publicados. Desde ya que a estas pantallas solo debe tener acceso la persona que cuente con un usuario y contraseña habilitada y que el usuario sea de tipo admin.
+
+Resumen de funcionalidades:
+
+- Home con catálogo de productos y filtros.
+- Pantalla de detalle de producto.
+- Pantalla de Login.
+- El resto de las funcionalidades se detallan a continuación.
+
+Si no realizaste el TP del curso C# Nivel 2, a continuación están las especificaciones para la gestión de productos.
+
+Las funcionalidades que deberá tener la aplicación serán:
+
+Listado de artículos (formato grilla).
+Búsqueda de artículos por distintos criterios.
+Agregar artículos.
+Modificar artículos.
+Eliminar artículos.
+Toda ésta información deberá ser persistida en una base de datos ya existente, la cual se adjunta.
+
+Los datos mínimos con los que deberá contar el artículo son los siguientes:
+
+Código de artículo.
+Nombre.
+Descripción.
+Marca (seleccionable de una lista desplegable).
+Categoría (seleccionable de una lista desplegable.
+Imagen.
+Precio.
+Etapa 1: Construir las clases necesarias para el modelo de dicha aplicación junto a las pantallas con las que contará, menú y su navegación.
+
+Etapa 2: Construir la interacción con la base de datos y validaciones correspondiente para dar vida a la funcionalidad. Primero la parte de gestión y por último la parte de Login.
+
+Etapa 3: Una vez finalizadas las etapas anteriores, considerar las funcionalidades opcionales.
+
+Consideraciones:
+- la DB es distitnta a la del curso Nivel 2, solo se suman tablas, pero cambia; generá esta nueva (tiene nombre distinto).
+- la app debe manejar arquitectura en capas, manejo de excepciones y validaciones cuando corresponda.
+- Si hiciste el TP Nivel 2, la idea es que reutilices las capas de dominio y negocio.
+
+
+
+
+Funcionalidad Adicional [OPCIONAL]
+Agregar un registro de cliente que permita darse de alta como user y poder agregar productos a favoritos. 
+
+Se deberá contar con:
+
+- Pantalla de registro. 
+- Pantalla "Mi Perfil" para gestionar datos personales.
+- Pantalla "Mis Favoritos" para revisar la lista de favs y poder quitarlos si ya no los quiere en el listado.
