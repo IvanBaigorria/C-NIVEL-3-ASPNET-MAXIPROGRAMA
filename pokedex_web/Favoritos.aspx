@@ -20,8 +20,8 @@
                      <h5 class="card-title"><%#Eval("Nombre") %></h5>
                       <p class="card-text"><%#Eval("Descripcion") %></p>
                     
-                    <a href="DetalleArticulos.aspx?id=<%#Eval("Id") %>" class="btn btn-primary">Ver detalle</a> 
-                    <a class="btn btn-danger">Eliminar Fav</a>
+                    <a href="DetalleArticulos.aspx?id=<%#Eval("Id") %>" class="btn btn-dark">Ver detalle</a> 
+                    
                     
                     <asp:Button Text="x" class="btn btn-danger" runat="server" id="btnEliminarClick" CommandArgument='<%#Eval("Id") %>' CommandName="FavoritosId" OnClick="btnEliminar_Click"/>
                 </div>

@@ -35,7 +35,8 @@
     <div class="row">
         <div class="col-md-4">
             <asp:Button Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardar_Click" ID="btnGuardar" runat="server" />
-            <a href="/">Regresar</a>
+            
+            <a href="/" class="btn btn-dark">Regresar</a>
         </div>
     </div>
         </div>

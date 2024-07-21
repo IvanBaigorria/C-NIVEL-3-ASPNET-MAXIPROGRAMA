@@ -23,13 +23,88 @@ namespace pokedex_web
                 repRepetidor.DataSource = ListaArticulo;
                 repRepetidor.DataBind();
             }
-        
+
+            
+
+
         }
-       /*protected void dgvArticulo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+
+        protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgvArticulo.PageIndex = e.NewPageIndex;
-            dgvArticulo.DataBind();
-        }*/
+            ddlCriterio.Items.Clear();
+            if (ddlCampo.SelectedItem.ToString() == "Marca")
+            {
+                MarcaNegocio negocioMarca = new MarcaNegocio();
+                List<Marca> listaMarca = negocioMarca.listar();
+
+                ddlCriterio.DataSource = listaMarca;
+                ddlCriterio.DataValueField = "Id";
+                ddlCriterio.DataTextField = "Descripcion";
+                ddlCriterio.DataBind();
+
+                
+
+                /*List<Articulo> lista = (List<Articulo>)Session["listaArticulos"];
+                List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+                dgvPokemons.DataSource = listaFiltrada;
+                dgvPokemons.DataBind();*/
+
+            }
+
+            else
+            {
+
+                CategoriaNegocio negociocat = new CategoriaNegocio();
+                List<Categoria> listaCategoria = negociocat.listar();
+                ddlCriterio.DataSource = listaCategoria;
+                ddlCriterio.DataValueField = "Id";
+                ddlCriterio.DataTextField = "Descripcion";
+                ddlCriterio.DataBind();
+
+            }
+            try
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                repRepetidor.DataSource = negocio.filtrarInicio(
+                    ddlCampo.SelectedItem.ToString(),
+                    ddlCriterio.SelectedItem.ToString());
+                repRepetidor.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+
+        }
+        protected void ddlCriterio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                repRepetidor.DataSource = negocio.filtrarInicio(
+                    ddlCampo.SelectedItem.ToString(),
+                    ddlCriterio.SelectedItem.ToString());
+                repRepetidor.DataBind();
+                btnVolver.Visible=true;
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+        }
+        protected void volver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", false);
+        }
+        /*protected void dgvArticulo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+         {
+             dgvArticulo.PageIndex = e.NewPageIndex;
+             dgvArticulo.DataBind();
+         }*/
 
         /*protected void dgvArticulo_SelectedIndexChanged(object sender, EventArgs e)
         {

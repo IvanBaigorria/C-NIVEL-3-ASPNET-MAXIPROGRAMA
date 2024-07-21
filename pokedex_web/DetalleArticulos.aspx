@@ -28,7 +28,7 @@
 
             <div class="mb-3">
                 
-                <a href="/" class="btn btn-primary">Volver</a>
+                <a href="/" class="btn btn-dark">Volver</a>
                 
             </div>
         </div>

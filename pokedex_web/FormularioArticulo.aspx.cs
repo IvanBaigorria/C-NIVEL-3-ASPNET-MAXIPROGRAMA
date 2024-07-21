@@ -77,7 +77,10 @@ namespace pokedex_web
                 Response.Redirect("Error.aspx");
             }
         }
-
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListaArticulos.aspx");
+        }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             try

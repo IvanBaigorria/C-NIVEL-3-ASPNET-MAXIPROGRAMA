@@ -224,7 +224,40 @@ namespace negocio
                 throw ex;
             }
         }
+       /* public List<Articulo> filtroInicio(string dato)
+        {
+            List<Articulo> listaFiltrada = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, M.Descripcion Marca, A.IdCategoria, C.Descripcion Categoria, A.ImagenUrl, A.Precio From ARTICULOS A, CATEGORIAS C, MARCAS M Where M.Id = A.IdMarca And C.Id = A.IdCategoria and A.Precio>0 and ";
+                if (dato == "");
+            }
 
+
+
+
+
+
+
+
+
+
+
+
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+
+
+
+
+        }*/
         public List<Articulo> filtrar(string campo, string criterio, string filtro)
         {
             List<Articulo> listaFiltrada = new List<Articulo>();
@@ -323,6 +356,68 @@ namespace negocio
                     aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Categoria = new Categoria ();
+                    aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
+
+                    listaFiltrada.Add(aux);
+
+                }
+
+                return listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
+        public List<Articulo> filtrarInicio(string inicio, string elegido)
+        {
+            List<Articulo> listaFiltrada = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, M.Descripcion Marca, A.IdCategoria, C.Descripcion Categoria, A.ImagenUrl, A.Precio From ARTICULOS A, CATEGORIAS C, MARCAS M Where M.Id = A.IdMarca And C.Id = A.IdCategoria and A.Precio>0 and ";
+
+                if (inicio == "Categoria")
+                {
+
+                    consulta += "C.Descripcion = '" + elegido + "' ";
+                            
+                }
+               
+
+                else 
+                {                        
+                     consulta += "M.Descripcion = '" + elegido + "' ";                           
+                }
+
+
+                
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                SqlDataReader lector = datos.Lector;
+
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Precio = Math.Round((decimal)datos.Lector["Precio"], 0);
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    if (!(datos.Lector["ImagenURl"] is DBNull))
+                        aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+
+                    aux.Marca = new Marca();
+                    aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Categoria = new Categoria();
                     aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
 

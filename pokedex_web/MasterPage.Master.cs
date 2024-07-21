@@ -27,7 +27,18 @@ namespace pokedex_web
                         imgAvatar.ImageUrl = "~/Images/" + user.UrlImagenPerfil;
                 }
             }
+            if ((Page is Login || Page is Registro || Page is Default || Page is Error || Page is DetalleArticulos))
+            {
+                if (Seguridad.sesionActiva(Session["trainee"]))
+                {
+                    Trainee user = (Trainee)Session["trainee"];
+                    lblUser.Text = user.Email;
+                    if (!string.IsNullOrEmpty(user.UrlImagenPerfil))
+                        imgAvatar.ImageUrl = "~/Images/" + user.UrlImagenPerfil;
+                }
+            }
         }
+
 
         protected void btnSalir_Click(object sender, EventArgs e)
         {

@@ -54,6 +54,11 @@ namespace pokedex_web
                         repRepetidor.DataSource = listaFav;
                         repRepetidor.DataBind();
                     }
+                    if(!(idFavoritos.Count > 0 ))
+                    {
+                    Session.Add("error","Todavia no hay ningun producto guardado en favoritos.");
+                    Response.Redirect("Error.aspx", false);
+                }
 
                 }
             }
@@ -73,9 +78,9 @@ namespace pokedex_web
 
             
 
-            Page_Load(sender, e);
-            
+            //Page_Load(sender, e);
 
+            Response.Redirect("Favoritos.aspx", false);
 
 
         }
