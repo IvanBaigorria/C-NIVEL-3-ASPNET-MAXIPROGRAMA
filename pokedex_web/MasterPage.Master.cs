@@ -22,7 +22,10 @@ namespace pokedex_web
                 else
                 {
                     Trainee user = (Trainee)Session["trainee"];
-                    lblUser.Text = user.Email;
+                    if (user.Nombre == "")
+                        lblUser.Text = user.Email;
+                    
+                    else lblUser.Text = user.Nombre;
                     if (!string.IsNullOrEmpty(user.UrlImagenPerfil))
                         imgAvatar.ImageUrl = "~/Images/" + user.UrlImagenPerfil;
                 }
@@ -32,7 +35,11 @@ namespace pokedex_web
                 if (Seguridad.sesionActiva(Session["trainee"]))
                 {
                     Trainee user = (Trainee)Session["trainee"];
-                    lblUser.Text = user.Email;
+                    if (user.Nombre == "")
+                    {
+                        lblUser.Text = user.Email;
+                    }
+                    else lblUser.Text = user.Nombre;
                     if (!string.IsNullOrEmpty(user.UrlImagenPerfil))
                         imgAvatar.ImageUrl = "~/Images/" + user.UrlImagenPerfil;
                 }

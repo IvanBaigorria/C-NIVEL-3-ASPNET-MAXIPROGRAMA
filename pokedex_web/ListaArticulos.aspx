@@ -31,6 +31,7 @@
             <div class="mb-3">
                 <asp:Label Text="Campo" ID="lblCampo" runat="server" />
                 <asp:DropDownList runat="server" AutoPostBack="true" CssClass="form-control" id="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
+                    <asp:ListItem Text="" />
                     <asp:ListItem Text="Nombre" />
                     <asp:ListItem Text="Tipo" />
                     <asp:ListItem Text="Precio" />
@@ -58,7 +59,7 @@
     <div class="col-3">
         <div class="mb-3">
             <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" ID="btnBuscar"  OnClick="btnBuscar_Click" />
-
+            <asp:Label Text="Ingrese los datos adecuados!" runat="server" CssClass="--bs-danger-text-emphasis" id="verificador" Visible="false" />
         </div>
     </div>
     <%} %>

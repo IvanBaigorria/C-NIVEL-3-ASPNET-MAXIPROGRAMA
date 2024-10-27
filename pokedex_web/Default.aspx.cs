@@ -18,21 +18,34 @@ namespace pokedex_web
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulo = negocio.listar();
 
-            if (!IsPostBack)
+            Trainee user = (Trainee)Session["trainee"];
+
+            string id = Request.QueryString["id"];
+
+
+                if (!IsPostBack)
             {
                 repRepetidor.DataSource = ListaArticulo;
                 repRepetidor.DataBind();
+                
             }
 
-            
-
+            ddlCriterio.Visible = false;
+   
 
         }
 
         protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlCriterio.Items.Clear();
-            if (ddlCampo.SelectedItem.ToString() == "Marca")
+            ddlCriterio.Visible = true;
+            if (ddlCampo.SelectedItem.ToString() != "Marca" && ddlCampo.SelectedItem.ToString() != "Categoria")
+            {
+                Response.Redirect("Default.aspx", false);
+            }
+
+
+                if (ddlCampo.SelectedItem.ToString() == "Marca")
             {
                 MarcaNegocio negocioMarca = new MarcaNegocio();
                 List<Marca> listaMarca = negocioMarca.listar();
@@ -88,6 +101,7 @@ namespace pokedex_web
                     ddlCriterio.SelectedItem.ToString());
                 repRepetidor.DataBind();
                 btnVolver.Visible=true;
+                ddlCampo.Visible = false;
 
             }
             catch (Exception ex)

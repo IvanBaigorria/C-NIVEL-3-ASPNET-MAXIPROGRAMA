@@ -24,12 +24,19 @@ namespace pokedex_web
             string id = Request.QueryString["id"];
             if (id != null && !IsPostBack)
             {
+                
                 Favorito fav = new Favorito();
                 FavoritosNegocio nuevo = new FavoritosNegocio();
 
-                fav.IdUser = user.Id;
-                fav.IdArticulo = int.Parse(id);
-                nuevo.agregar(fav);
+                if (!Seguridad.sesionActiva(Session["trainee"]))
+                    Response.Redirect("Login.aspx", false);
+                else
+                {
+                    fav.IdUser = user.Id;
+                    fav.IdArticulo = int.Parse(id);
+                    nuevo.agregar(fav);
+                }
+                
 
                 //Session.Add(("negociofavoritos"), negocfavoritos.listar());
                 //dgvFavoritos.DataSource = Session["negociofavoritos"];

@@ -23,7 +23,7 @@
                     <a href="DetalleArticulos.aspx?id=<%#Eval("Id") %>" class="btn btn-dark">Ver detalle</a> 
                     
                     
-                    <asp:Button Text="x" class="btn btn-danger" runat="server" id="btnEliminarClick" CommandArgument='<%#Eval("Id") %>' CommandName="FavoritosId" OnClick="btnEliminar_Click"/>
+                    <asp:Button Text="✘" class="btn btn-danger" runat="server" id="btnEliminarClick" CommandArgument='<%#Eval("Id") %>' CommandName="FavoritosId" OnClick="btnEliminar_Click"/>
                 </div>
             </div>
         </div>

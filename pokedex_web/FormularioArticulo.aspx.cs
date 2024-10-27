@@ -22,6 +22,14 @@ namespace pokedex_web
                 //config para agregar
                 if (!IsPostBack)
                 {
+
+                    txtId.Text = " ";
+                    txtCodigo.Text = "null";
+                    txtNombre.Text = "null";
+                    txtDescripcion.Text = "null";
+                    txtImagenUrl.Text = "null";
+                    txtNumero.Text = "null";
+                    btnEliminar.Visible = false;
                     MarcaNegocio negocio = new MarcaNegocio();
                     List<Marca> listaMarca = negocio.listar();
 

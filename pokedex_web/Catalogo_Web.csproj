@@ -102,6 +102,8 @@
     <Content Include="PaginaAdmin.aspx" />
     <Content Include="PaginaUser.aspx" />
     <Content Include="Registro.aspx" />
+    <Content Include="script.js" />
+    <Content Include="StyleSheet.css" />
     <Content Include="Web.config" />
     <Content Include="Default.aspx" />
     <Content Include="ListaArticulos.aspx" />

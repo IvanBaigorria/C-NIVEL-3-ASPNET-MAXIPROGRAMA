@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using negocio;
 using dominio;
+using System.Web.WebPages;
 
 namespace Catalogo_Web
 {
@@ -47,12 +48,14 @@ namespace Catalogo_Web
             List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
             dgvPokemons.DataSource = listaFiltrada;
             dgvPokemons.DataBind();
+            verificador.Visible = false;
         }
 
         protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
         {
             FiltroAvanzado = chkAvanzado.Checked;
             txtFiltro.Enabled = !FiltroAvanzado;
+            verificador.Visible = false;
         }
 
       
@@ -64,26 +67,80 @@ namespace Catalogo_Web
                 ddlCriterio.Items.Add("Igual a");
                 ddlCriterio.Items.Add("Mayor a");
                 ddlCriterio.Items.Add("Menor a");
+                txtFiltroAvanzado.Text = null;
+                verificador.Visible = false;
+
             }
             else
             {
                 ddlCriterio.Items.Add("Contiene");
                 ddlCriterio.Items.Add("Comienza con");
                 ddlCriterio.Items.Add("Termina con");
+                txtFiltroAvanzado.Text = null;
+                verificador.Visible = false;
             }
         }
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!char.IsDigit(caracter) || !char.IsWhiteSpace(caracter))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
+
+        private bool validaTextoVacio(object control)
+        {
+            if (control is TextBox texto)
+            {
+                if (string.IsNullOrEmpty(texto.Text))
+                    return false;
+                
+            }
+            return true;
+        }
+        bool pasar = true;
+
+        
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            pasar = true;
+            verificador.Visible = false;
             try
             {
+                
+
+                bool validar = (!validaTextoVacio(txtFiltroAvanzado.Text));
+                if (ddlCampo.SelectedItem.ToString() == "Precio" && !soloNumeros(txtFiltroAvanzado.Text))
+                {
+                    txtFiltroAvanzado.Text = null;
+                    verificador.Visible = true;
+                    pasar = false;
+                }
+                else
+                {
+                    pasar = true; verificador.Visible = false;
+                }
+                
+
+                if (ddlCampo.SelectedItem != null && ddlCriterio.SelectedItem != null && txtFiltroAvanzado.Text != null && pasar==true) { 
                 ArticuloNegocio negocio = new ArticuloNegocio();
                 dgvPokemons.DataSource = negocio.filtrar(
                     ddlCampo.SelectedItem.ToString(),
                     ddlCriterio.SelectedItem.ToString(),
                     txtFiltroAvanzado.Text);
                 dgvPokemons.DataBind();
-                    
+                    verificador.Visible = false;
+                }
+
+                else
+                {
+                    verificador.Visible = true;
+                }
             }
             catch (Exception ex)
             {

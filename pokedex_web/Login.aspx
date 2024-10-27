@@ -2,11 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="contenido">
-        <div class="row">
+    <div class="contenido"  style="text-align: center;">
+        <h2 css="align-center" id="titulo" onmouseover="agrandarTexto(this)" onmouseout="restaurarTexto(this)">Login</h2>
+        <p></p>
+        <div class="d-flex justify-content-center">
             
-            <div class="col-4">
-                <h2>Login</h2>
+            <div class="col-3">
+                
                 <div class="mb-3">
                     <label class="form-label">Email</label>
                     <asp:TextBox runat="server" cssclass="form-control" REQUIRED="true" ID="txtEmail"/>
@@ -15,13 +17,28 @@
                     <label class="form-label">Password</label>
                     <asp:TextBox runat="server" cssclass="form-control" ID="txtPassword" TextMode="Password"/>
                 </div>
-                <asp:Button Text="Ingresar" cssclass="btn btn-primary" ID="btnLogin" OnClick="btnLogin_Click" runat="server" />
-                <a href="/" Class="btn btn-danger" >Cancelar</a>
+                <asp:Button Text="Ingresar" cssclass="btn btn-dark" ID="btnLogin" OnClick="btnLogin_Click" runat="server" />
+                
+                <a href="/" Class="btn btn-primary" >Home</a>
+                <p></p>
 
             </div>
         </div>
         </div>
       
-    
+    <script>
+
+
+        function agrandarTexto(elemento) {
+            elemento.style.transform = "scale(1.2)";
+            elemento.style.transition = "transform 0.5s ease";
+        }
+
+        function restaurarTexto(elemento) {
+            elemento.style.transform = "scale(1)";
+            elemento.style.transition = "transform 0.5s ease";
+        }
+
+    </script>
         
 </asp:Content>
